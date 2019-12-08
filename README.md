@@ -1,2 +1,2 @@
-## Cryptocurrency Prices Monitoring App
+## Cryptocurrency Prices Monitoring Index
 
