@@ -1,17 +1,39 @@
 import React from "react";
+import _ from 'lodash';
 const cc = require('cryptocompare');
 export const AppContext = React.createContext();
+
+const MAX_FAVORITES = 10;
 
 export default class AppProvider extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
             page: 'dashboard',
-            ...AppProvider.savedSettings(),
+            favorites: ['BTC', 'ETH', 'XMR', 'DOGE'],
+            ...this.savedSettings(),
             setPage: this.setPage,
-            confirmFavorites: this.confirmFavorites
+            addCoin: this.addCoin,
+            removeCoin: this.removeCoin,
+            confirmFavorites: this.confirmFavorites,
+            isInFavorites: this.isInFavorites
         }
     }
+
+    addCoin = key => {
+        let favorites = [...this.state.favorites];
+        if (favorites.length < MAX_FAVORITES) {
+            favorites.push(key)
+            this.setState({favorites})
+        }
+    };
+
+    removeCoin = key => {
+        let favorites = [...this.state.favorites];
+        this.setState({favorites: _.pull(favorites, key)})
+    };
+
+    isInFavorites = key => _.includes(this.state.favorites, key);
 
     componentDidMount() {
         this.fetchCoins();
@@ -22,13 +44,15 @@ export default class AppProvider extends React.Component {
         this.setState({coinList});
     };
 
-    static savedSettings(){
+    savedSettings() {
         let cryptoDashData = JSON.parse(localStorage.getItem('cryptoDash'));
-        if (!cryptoDashData){
+        if (!cryptoDashData) {
             return {page: "settings", firstVisit: true}
         }
-        return {}
+        let {favorites} = cryptoDashData;
+        return { favorites }
     }
+
     setPage = page => this.setState({page});
     confirmFavorites = () => {
         this.setState({
@@ -36,10 +60,11 @@ export default class AppProvider extends React.Component {
             page: 'dashboard'
         });
         localStorage.setItem("cryptoDash", JSON.stringify({
-            test: "BITCOIN IS EVERYTHING"
+           favorites: this.state.favorites
         }))
-    }
-    render(){
+    };
+
+    render() {
         return (
             <AppContext.Provider
                 value={this.state}

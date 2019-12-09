@@ -8,7 +8,7 @@ export const CoinHeaderGridStyled = styled.div`
 `;
 
 export const CoinSymbol = styled.div`
-  justify-self: right;
+  justify-self: center;
 `;
 
 export const DeleteIcon = styled.div`
@@ -23,9 +23,9 @@ export const DeleteIcon = styled.div`
 export default function ({name, symbol, topSection}) {
     return (
         <CoinHeaderGridStyled>
-            <div>{name}</div> displaying
+            <div>{name}</div>
             {topSection ? (
-                <DeleteIcon>X</DeleteIcon>
+                <DeleteIcon> X </DeleteIcon>
             )
             : (<CoinSymbol> {symbol}</CoinSymbol>)
             }
