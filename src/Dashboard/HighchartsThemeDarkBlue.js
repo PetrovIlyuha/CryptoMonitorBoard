@@ -1,12 +1,13 @@
+import { lightTheme } from '../Shared/Styles';
 export const Theme = {
     colors: ['#DDDF0D', '#55BF3B', '#DF5353', '#7798BF', '#aaeeee',
         '#ff0066', '#eeaaee', '#55BF3B', '#DF5353', '#7798BF', '#aaeeee'],
     chart: {
-        backgroundColor: '#07071a',
+        backgroundColor: lightTheme ? 'white' : '#07071a',
         borderColor: '#000000',
         borderWidth: 0,
         className: 'dark-container',
-        plotBackgroundColor: '#07071a',
+        plotBackgroundColor: lightTheme ? 'white' : '#07071a',
         plotBorderWidth: 0
     },
     title: {
