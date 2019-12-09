@@ -18,8 +18,8 @@ export default class AppProvider extends React.Component {
             confirmFavorites: this.confirmFavorites,
             isInFavorites: this.isInFavorites,
             setFilteredCoins: this.setFilteredCoins,
-            fetchPrices: this.fetchPrices,
-            prices: this.prices,
+            // fetchPrices: this.fetchPrices,
+            // prices: this.prices,
         }
     }
 
