@@ -1,15 +1,14 @@
 import React from "react";
 import styled from 'styled-components';
 import {AppContext} from "../App/AppProvider";
-import { SelectableTile } from "../Shared/Tile";
 import CoinTile from '../Settings/CoinTile';
 
 const uuidv4 = require('uuid/v4');
 
 export const CoinGridStyled = styled.div`
   display: grid;
-  grid-template-columns: repeat(5, 1fr);
-  margin: 40px;
+  grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+  margin-top: 40px;
   grid-gap: 15px;
 `;
 
