@@ -1,4 +1,4 @@
-export default function () {
+export default function (historical) {
     return {
         title: {
             text: 'Coin Price Dynamics'
@@ -8,6 +8,7 @@ export default function () {
                 text: 'Price'
             }
         },
+        xAxis: {type: 'datetime'},
         legend: {
             layout: 'vertical',
             align: 'right',
@@ -21,10 +22,7 @@ export default function () {
                 pointStart: 2010
             }
         },
-        series: [{
-            name: 'Installation',
-            data: [43934, 52503, 57177, 69658, 97031, 119931, 137133, 154175]
-        }, ],
+        series: historical,
         responsive: {
             rules: [{
                 condition: {
