@@ -19,6 +19,9 @@ const ControlButtonElem = styled.div`
    ${props => props.active && css`
     text-shadow: 0px 0px 20px rgba(26,237,51,1);;
    `}
+   ${props => props.hidden && css`
+      display: none;
+  `}
 `;
 
 function toProperCase(lower) {
@@ -28,10 +31,11 @@ function toProperCase(lower) {
 function ControlButton({name}) {
     return (
         <AppContext.Consumer>
-            {({page, setPage}) => (
+            {({page, setPage, firstVisit}) => (
                 <ControlButtonElem
                     onClick={() => setPage(name)}
-                    active={page === name}>
+                    active={page === name}
+                    hidden={firstVisit && name === 'dashboard'}>
                     {toProperCase(name)}
                 </ControlButtonElem>
             )}
